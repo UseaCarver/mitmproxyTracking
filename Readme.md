@@ -1,7 +1,7 @@
 About
 
-- Addon for mitmproxy to track your request and save it in activemq. 
-- Run a server which can read data from activemq and return it back.
+- Addon for mitmproxy to track your request and save it in rabbitmq. 
+- Run a server which can read data from rabbitmq and return it back.
 
 Preresiquites:
 

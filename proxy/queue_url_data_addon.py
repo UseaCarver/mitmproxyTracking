@@ -3,13 +3,15 @@ import json
 import stomp
 import json
 from urllib.parse import parse_qs,urlparse
+import pika
+
 
 class QueueDataAddon:
     def __init__(self):
-        conn = stomp.Connection()
-        conn.start()
-        conn.connect('admin', 'admin', wait=True)
-        self.qconn=conn
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        channel = connection.channel()
+        self.channel=channel
+        self.channel.queue_declare(queue='mitmtrack')
 
     def request(self, flow):
         if flow.request.host == ctx.options.trackUrl:
@@ -21,7 +23,8 @@ class QueueDataAddon:
             else:
                 data = {'path':flow.request.url, 'data  ':json.loads(flow.request.text) }
             print('send data to queue')
-            self.qconn.send(body=json.dumps(data), destination=ctx.options.queueName)
+            print(type(json.dumps(data)))
+            self.channel.basic_publish(exchange='', routing_key='mitmtrack',body=json.dumps(data))
 
     def load(self, loader):
         loader.add_option(

@@ -20,5 +20,12 @@ Steps to run:
 - Remove the proxy for your WiFi: python proxy/remove_proxy.py
 
 
+API:
+
+- 127.0.0.1:5000/view - to view all the data captured
+- 127.0.0.1:5000/view?key1=value1&key2=value2 - to view data matching key1-value1 or key2-value2
+- 127.0.0.1:5000/view/matching?key1=value1&key2=value2 - to view data matching key1-value1 and key2-value2
+
+
 
 

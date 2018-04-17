@@ -9,6 +9,7 @@ Preresiquites:
 - pip
 - rabbitmq (Install via brew for MAC OS)
 - mitmproxy (https://docs.mitmproxy.org/stable/overview-installation/#advanced-installation) (Install using 'pip3 install mitmproxy' for MAC)
+- For mobile : 1.Proxy request to your machine's IP. 2. Follow mitmproxy steps for android/ios setup.
 
 
 Steps to run:

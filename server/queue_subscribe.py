@@ -1,6 +1,5 @@
 import stomp
 import json
-from queue_listener import ActiveQListener 
 from os import environ
 import threading
 import time

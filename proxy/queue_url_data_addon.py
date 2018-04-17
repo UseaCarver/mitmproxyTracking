@@ -28,15 +28,9 @@ class QueueDataAddon:
 
     def load(self, loader):
         loader.add_option(
-            name = "trackUrl",
+            name = "urlToLog",
             typespec = str,
-            default = "et2-m-virgintrains.ttlnonprod.com",
+            default = "",
             help = "Url to track",
-        )
-        loader.add_option(
-            name = "queueName",
-            typespec = str,
-            default = "/queue/mitmtrack",
-            help = "Queue name",
         )
 addons = [QueueDataAddon()]

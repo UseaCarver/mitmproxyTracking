@@ -14,7 +14,7 @@ class QueueDataAddon:
         self.channel.queue_declare(queue='mitmtrack')
 
     def request(self, flow):
-        if flow.request.host == ctx.options.trackUrl:
+        if flow.request.host == ctx.options.urlToLog:
             if flow.request.method=='GET':
                 url_query=urlparse(flow.request.url).query
                 query_dict= {} if len(url_query)==0 else dict(item.split("=") for item in url_query.split("&"))

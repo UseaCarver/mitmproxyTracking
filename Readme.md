@@ -8,8 +8,14 @@ How it works:
 
 1. All the url requests from your machine is sent to the mitmproxy. 
 2. The addon helps in sending the request body/ query string of the request to rabbitmq, only for the url passed as 'urlToLog'.
+
+
 ![alt text](https://raw.githubusercontent.com/bsneha90/mitmproxyTracking/master/mitmproxyTracking.png)
+
+
 3. The server helps us to view/filter the data from the queue.
+
+
 ![alt text](https://raw.githubusercontent.com/bsneha90/mitmproxyTracking/master/server.png)
 
 Preresiquites:

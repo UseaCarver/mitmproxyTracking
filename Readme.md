@@ -1,25 +1,30 @@
 About
 
-- Addon for mitmproxy to track your request and save it in rabbitmq. 
+- Addon for mitmproxy to track your request for a given url and save it in rabbitmq. 
 - Run a server which can read data from rabbitmq and return it back.
+- This could be used in writing automation tests for request going out of your machine. Like for web analytics data, background api calls for mobile etc.
+
+How it works:
+
+1. All the url requests from your machine is sent to the mitmproxy. 
+2. The addon helps in sending the request body/ query string of the request to rabbitmq, only for the url passed as 'urlToLog'.
+![alt text](https://raw.githubusercontent.com/bsneha90/mitmproxyTracking/master/mitmproxyTracking.png)
+3. The server helps us to view/filter the data from the queue.
+![alt text](https://raw.githubusercontent.com/bsneha90/mitmproxyTracking/master/server.png)
 
 Preresiquites:
-
 - python
 - pip
 - rabbitmq (Install via brew for MAC OS)
 - mitmproxy (https://docs.mitmproxy.org/stable/overview-installation/#advanced-installation) (Install using 'pip3 install mitmproxy' for MAC)
-- For mobile : 1.Proxy request to your machine's IP. 2. Follow mitmproxy steps for android/ios setup.
+- Setup mitmproxy certitficates if required, as mentioned [a here](https://docs.mitmproxy.org/stable/concepts-certificates/)
 
+To start:
+1. run sh ./start_tracking.sh 
+2. setup the proxy for the device/machine
 
-Steps to run:
-- Install dependencies: pip install -r requirements.txt
-- Setup the proxy for your WiFi: python proxy/setup_proxy.py (If running in mac, else setup in mobile manually)
-- Start rabbitmq server: rabbitmq-server
-- Start mitmproxy with addon: mitmdump -s ./proxy/queue_url_data_addon.py  --set urlToLog=www.google.co.in (Replace www.google.co.in with your url)
-- Start the server to listen to track the url and view: python server/server.py
-- Remove the proxy for your WiFi: python proxy/remove_proxy.py (If running in mac, else setup in mobile manually)
-
+To stop and clean everything:
+- sh ./stop-tracking.sh
 
 API:
 

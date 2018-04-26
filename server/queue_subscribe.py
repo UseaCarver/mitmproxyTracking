@@ -20,17 +20,18 @@ class QueueSuscriber:
         channel = connection.channel()
         print('Listening..')
         method_frame, header_frame, body = channel.basic_get('mitmtrack')
+        print (method_frame, header_frame, body)
         if method_frame:
-            print method_frame, header_frame, body
+            print (method_frame, header_frame, body)
             channel.basic_ack(method_frame.delivery_tag)
-            msg_list.append(ast.literal_eval(body))
+            msg_list.append(json.loads(body))
             while method_frame.message_count > 0:
                 method_frame, header_frame, body = channel.basic_get('mitmtrack')
                 if method_frame:
                     channel.basic_ack(method_frame.delivery_tag)
-                    msg_list.append(ast.literal_eval(body))
+                    msg_list.append(json.loads(body))
         else:
-            print 'No message returned'
+            print ('No message returned')
         channel.close()
         connection.close()
         callback(msg_list)
